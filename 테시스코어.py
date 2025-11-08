@@ -14,12 +14,11 @@ VK_3 = 0x33  # '3' 키
 VK_RETURN = 0x0D # 엔터
 SKIP_CHK = False
 lock = threading.Lock()
-selectMonitors = 1
 
 # 1️⃣ 화면 캡처 함수 (빠르고 안정적)
 def capture_screen():
     with mss.mss() as sct:
-        monitor = sct.monitors[selectMonitors]  # 첫 번째 모니터
+        monitor = sct.monitors[1]  # 첫 번째 모니터
         screenshot = sct.grab(monitor)
         img = np.array(screenshot)
         img = cv2.cvtColor(img, cv2.COLOR_BGRA2BGR)
@@ -67,34 +66,13 @@ def send_background_click(hwnd, vk_key):
 
 # 1️⃣ 창의 위치와 크기 가져오기
 def win_send_xy(hwnd):
-    monitors = win32api.EnumDisplayMonitors()
-    monitor_info_list = []
-
-    for monitor in monitors:
-        hMonitor, hdcMonitor, lprcMonitor = monitor
-        info = win32api.GetMonitorInfo(hMonitor)
-        # 모니터의 좌표 영역
-        rect = info['Monitor']
-        # rect = (left, top, right, bottom)
-        # width = rect[2] - rect[0]
-        # height = rect[3] - rect[1]
-        monitor_info_list.append({
-            # 'handle': hMonitor,
-            # 'left': rect[0],
-            # 'top': rect[1],
-            'win_left': rect[0],
-            'win_top': rect[1],
-            'win_rights': rect[2],
-            'win_bottoms': rect[3],
-            # 'is_primary': bool(info['Flags'])
-        })
-    # print(monitor_info_list, selectMonitors)
-    return monitor_info_list[selectMonitors - 1]
+    return win32gui.GetWindowRect(hwnd)
 
 #이미지 서치
 def select_img(TARGET_IMAGE, hwnd, win_left, win_top):
     # global SKIP_CHK
     # with lock: SKIP_CHK = True  # 안전하게 전역 변수 수정
+
     returnChk = False
     points, screen, template = find_image_on_screen(TARGET_IMAGE, THRESHOLD)
     if points:
@@ -105,7 +83,7 @@ def select_img(TARGET_IMAGE, hwnd, win_left, win_top):
             screen_y = pt[1] + h // 2
             inner_x = screen_x - win_left
             inner_y = screen_y - win_top - 45
-            #print(f"screen_y 좌표: ({screen_x}, {screen_y})")
+            # print(f"screen_y 좌표: ({screen_x}, {screen_y})")
             # print(f"wind 좌표: ({win_left}, {win_top})")
             # print(f"창 내부 좌표: ({inner_x}, {inner_y})")
 
@@ -114,6 +92,7 @@ def select_img(TARGET_IMAGE, hwnd, win_left, win_top):
             click_center(inner_x, inner_y, hwnd)
             time.sleep(0.5)
             send_background_click(hwnd, VK_3)
+            break
         returnChk = True
 
     # if returnChk:
@@ -140,7 +119,7 @@ def worker_1(test):
                 time.sleep(0.1)
                 send_background_click(hwnd, VK_3)
             else :
-                time.sleep(0.5)
+                time.sleep(0.1)
 
     else:
         print("❌ 해당 창을 찾을 수 없습니다.")
@@ -153,13 +132,12 @@ def worker_2(name):
     if hwnd:
         for i in range(1, 30000000):
 
-            winSendXyData = win_send_xy(hwnd)
-
-            if select_img('im/rune/floor1.png', hwnd, winSendXyData['win_left'], 0) : continue
-            if select_img('im/rune/floor2.png', hwnd, winSendXyData['win_left'], 0) : continue
-            if select_img('im/rune/floor3.png', hwnd, winSendXyData['win_left'], 0) : continue
-            if select_img('im/rune/floor4.png', hwnd, winSendXyData['win_left'], 0) : continue
-            if select_img('im/rune/floor5.png', hwnd, winSendXyData['win_left'], 0) : continue
+            win_left, win_top, win_right, win_bottom  = win_send_xy(hwnd)
+            select_img('im/core/skii1.png', hwnd, win_left, win_top)
+            select_img('im/core/skii2.png', hwnd, win_left, win_top)
+            select_img('im/core/skii3.png', hwnd, win_left, win_top)
+            select_img('im/core/skii4.png', hwnd, win_left, win_top)
+            select_img('im/core/skii5.png', hwnd, win_left, win_top)
 
 
     else:
