@@ -19,6 +19,7 @@ ctypes.windll.user32.SetProcessDPIAware()
 THRESHOLD = 0.95   # 템플릿 매칭 유사도 기준
 VK_3 = 0x33         # '3' 키
 VK_RETURN = 0x0D    # 엔터 키
+VK_SHIFT = 0x10    # 쉬프트 키
 SKIP_CHK = False
 lock = threading.Lock()
 
@@ -135,6 +136,20 @@ def get_window_by_title(partial_title):
     win32gui.EnumWindows(cb, result)
     return result[0] if result else None
 
+# ==============================
+# 쉬프트
+# ==============================
+def click_with_shift(hwnd, x, y):
+    # 실제 Shift 누르기
+    win32api.keybd_event(VK_SHIFT, 0, 0, 0)
+    time.sleep(0.05)
+
+    # 클릭 수행 (실제 눌린 상태 유지 중)
+    click_client_coords(x, y, hwnd)
+    time.sleep(0.05)
+
+    # Shift 떼기
+    win32api.keybd_event(VK_SHIFT, 0, win32con.KEYEVENTF_KEYUP, 0)
 
 # ==============================
 # 핵심: 한 번 캡처하고 모든 템플릿 검사 (모니터별)
@@ -209,7 +224,7 @@ def select_img(fileList, hwnd):
 
                 # 클릭
                 print(f"Found match score={best['score']:.3f} screen=({screen_x},{screen_y}) client=({client_x},{client_y})")
-                click_client_coords(client_x, client_y - 10, hwnd)
+                click_with_shift(hwnd, client_x, client_y - 10)
                 _last_click["pos"] = pos
                 _last_click["time"] = now
 
@@ -263,8 +278,10 @@ def worker_2():
         {'imgName': 'im/Abyss/Jellybee.png', 'callBackKey': ''},
         {'imgName': 'im/Abyss/yes.png', 'callBackKey': ''},
         {'imgName': 'im/Abyss/skeleton.png', 'callBackKey': ''},
-        {'imgName': 'im/Abyss/up_re_game2.png', 'callBackKey': ''},
-        {'imgName': 'im/Abyss/up_re_game.png', 'callBackKey': VK_RETURN},
+        # {'imgName': 'im/Abyss/up_re_game2.png', 'callBackKey': ''},
+        # {'imgName': 'im/Abyss/up_re_game.png', 'callBackKey': VK_RETURN},
+        {'imgName': 'im/Abyss/re_game2.png', 'callBackKey': ''},
+        {'imgName': 'im/Abyss/re_game.png', 'callBackKey': VK_RETURN},
     ]
 
     # 메인 루프: 모니터 한 번 캡처 -> 모든 템플릿 검사 -> 대기 -> 반복

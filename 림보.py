@@ -17,8 +17,10 @@ ctypes.windll.user32.SetProcessDPIAware()
 # 설정
 # ==============================
 THRESHOLD = 0.95   # 템플릿 매칭 유사도 기준
+VK_2 = 0x32         # '2' 키
 VK_3 = 0x33         # '3' 키
 VK_RETURN = 0x0D    # 엔터 키
+VK_SHIFT = 0x10    # 쉬프트 키
 SKIP_CHK = False
 lock = threading.Lock()
 
@@ -139,14 +141,14 @@ def get_window_by_title(partial_title):
 # ==============================
 # 핵심: 한 번 캡처하고 모든 템플릿 검사 (모니터별)
 # ==============================
-def select_img(fileList, hwnd, win_left, win_top):
+def select_img(fileList, hwnd):
     """
     - fileList: [{'imgName':..., 'callBackKey': ...}, ...]
     - hwnd: target window handle
     - win_left, win_top: window rect's left/top (screen coords, 논리 좌표)
     """
     global _last_click
-    scale = get_dpi_scale()
+    #scale = get_dpi_scale()
     monitors = get_monitors()
     tasks = []
 
@@ -183,49 +185,51 @@ def select_img(fileList, hwnd, win_left, win_top):
             r = fut.result()
             if r:
                 results.append(r)
+                best = r
+
+                mon = best['mon']
+                max_loc = best['max_loc']
+                template = best['template']
+                callBackKey = best['callBackKey']
+                h, w = template.shape[:2]
+                x, y = max_loc
+
+                # 화면(스크린 전체) 좌표(픽셀)
+                screen_x = mon[0] + x + w // 2
+                screen_y = mon[1] + y + h // 2
+
+                # 스케일 보정된 윈도우 내부 좌표로 변환: ScreenToClient 사용 (더 정확)
+                client_point = win32gui.ScreenToClient(hwnd, (int(screen_x), int(screen_y)))
+                client_x, client_y = client_point[0], client_point[1]
+
+                # 중복 클릭/쿨다운 검사
+                now = time.time()
+                pos = (int(client_x), int(client_y))
+                if _last_click["pos"] == pos and (now - _last_click["time"]) < CLICK_COOLDOWN:
+                    # 이미 최근에 클릭한 위치이면 무시
+                    return False
+
+                # 클릭
+                #win32api.PostMessage(hwnd, win32con.WM_KEYDOWN, VK_SHIFT, 0)
+                print(f"Found match score={best['score']:.3f} screen=({screen_x},{screen_y}) client=({client_x},{client_y})")
+                click_client_coords(client_x, client_y - 10, hwnd)
+                _last_click["pos"] = pos
+                _last_click["time"] = now
+                #win32api.PostMessage(hwnd, win32con.WM_KEYUP, VK_SHIFT, 0)
+                time.sleep(3)
+                # 콜백키가 있으면 전송
+                if callBackKey:
+                    send_background_click(hwnd, callBackKey)
+
+                # 클릭 후 짧은 여유
+                time.sleep(0.2)
+            continue
 
     if not results:
         return False
 
     # --- 3) 결과 중 가장 높은 score 우선 처리
-    results.sort(key=lambda x: x['score'], reverse=True)
-    best = results[0]
-
-    mon = best['mon']
-    max_loc = best['max_loc']
-    template = best['template']
-    callBackKey = best['callBackKey']
-    h, w = template.shape[:2]
-    x, y = max_loc
-
-    # 화면(스크린 전체) 좌표(픽셀)
-    screen_x = mon[0] + x + w // 2
-    screen_y = mon[1] + y + h // 2
-
-    # 스케일 보정된 윈도우 내부 좌표로 변환: ScreenToClient 사용 (더 정확)
-    client_point = win32gui.ScreenToClient(hwnd, (int(screen_x), int(screen_y)))
-    client_x, client_y = client_point[0], client_point[1]
-
-    # 중복 클릭/쿨다운 검사
-    now = time.time()
-    pos = (int(client_x), int(client_y))
-    if _last_click["pos"] == pos and (now - _last_click["time"]) < CLICK_COOLDOWN:
-        # 이미 최근에 클릭한 위치이면 무시
-        return False
-
-    # 클릭
-    print(f"Found match score={best['score']:.3f} screen=({screen_x},{screen_y}) client=({client_x},{client_y})")
-    click_client_coords(client_x, client_y, hwnd)
-    _last_click["pos"] = pos
-    _last_click["time"] = now
-
-    # 콜백키가 있으면 전송
-    if callBackKey:
-        time.sleep(0.5)
-        send_background_click(hwnd, callBackKey)
-
-    # 클릭 후 짧은 여유
-    time.sleep(0.2)
+    #results.sort(key=lambda x: x['score'], reverse=True)
     return True
 
 
@@ -233,7 +237,7 @@ def select_img(fileList, hwnd, win_left, win_top):
 # 스레드들
 # ==============================
 def worker_1():
-    window_title_keyword = "Talesweaver Client Version 907.3 ,Release ,for Korea (DirectX9)"
+    window_title_keyword = "Talesweaver Client Version 907.2 ,Release ,for Korea (DirectX9)"
     hwnd = get_window_by_title(window_title_keyword)
     if not hwnd:
         print("❌ 해당 창을 찾을 수 없습니다.")
@@ -249,29 +253,28 @@ def worker_1():
 
 
 def worker_2():
-    window_title_keyword = "Talesweaver Client Version 907.3 ,Release ,for Korea (DirectX9)"
+    window_title_keyword = "Talesweaver Client Version 907.2 ,Release ,for Korea (DirectX9)"
     hwnd = get_window_by_title(window_title_keyword)
     if not hwnd:
         print("❌ 해당 창을 찾을 수 없습니다.")
         return
 
     fileList = [
-        {'imgName': 'im/rune/floor1.png', 'callBackKey': VK_3},
-        {'imgName': 'im/rune/floor2.png', 'callBackKey': VK_3},
-        {'imgName': 'im/rune/floor3.png', 'callBackKey': VK_3},
-        {'imgName': 'im/rune/floor4.png', 'callBackKey': VK_3},
-        {'imgName': 'im/rune/floor5.png', 'callBackKey': VK_3},
+        # {'imgName': 'im/Abyss/yes2.png', 'callBackKey': VK_RETURN},
+        {'imgName': 'im/limbo/fooler1.png', 'callBackKey': VK_3},
+        {'imgName': 'im/limbo/fooler2.png', 'callBackKey': VK_3},
+        {'imgName': 'im/limbo/fooler3.png', 'callBackKey': VK_3},
+        {'imgName': 'im/limbo/fooler4.png', 'callBackKey': VK_3},
     ]
 
     # 메인 루프: 모니터 한 번 캡처 -> 모든 템플릿 검사 -> 대기 -> 반복
     while True:
-        win_left, win_top, win_right, win_bottom = win32gui.GetWindowRect(hwnd)
-        changed = select_img(fileList, hwnd, win_left, win_top)
+        changed = select_img(fileList, hwnd)
         # 클릭이 발생하면 SKIP 플래그 관리
-        if changed:
-            with lock:
-                global SKIP_CHK
-                SKIP_CHK = True
+        # if changed:
+        #     with lock:
+        #         global SKIP_CHK
+        #         SKIP_CHK = True
 
         # 루프 텀 (캡처 1회/주기)
         time.sleep(0.6)
@@ -281,8 +284,8 @@ def worker_2():
 # 메인
 # ==============================
 def main():
-    #t1 = threading.Thread(target=worker_1, daemon=True)
-    #t1.start()
+    t1 = threading.Thread(target=worker_1, daemon=True)
+    t1.start()
     worker_2()  # 메인 스레드에서 실행
 
 if __name__ == "__main__":
