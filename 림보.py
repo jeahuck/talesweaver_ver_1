@@ -237,7 +237,7 @@ def select_img(fileList, hwnd):
 # 스레드들
 # ==============================
 def worker_1():
-    window_title_keyword = "Talesweaver Client Version 907.2 ,Release ,for Korea (DirectX9)"
+    window_title_keyword = "Talesweaver Client Version 909.2 ,Release ,for Korea (DirectX9)"
     hwnd = get_window_by_title(window_title_keyword)
     if not hwnd:
         print("❌ 해당 창을 찾을 수 없습니다.")
@@ -253,23 +253,41 @@ def worker_1():
 
 
 def worker_2():
-    window_title_keyword = "Talesweaver Client Version 907.2 ,Release ,for Korea (DirectX9)"
+    window_title_keyword = "Talesweaver Client Version 909.2 ,Release ,for Korea (DirectX9)"
     hwnd = get_window_by_title(window_title_keyword)
     if not hwnd:
         print("❌ 해당 창을 찾을 수 없습니다.")
         return
 
-    fileList = [
-        # {'imgName': 'im/Abyss/yes2.png', 'callBackKey': VK_RETURN},
-        {'imgName': 'im/limbo/fooler1.png', 'callBackKey': VK_3},
-        {'imgName': 'im/limbo/fooler2.png', 'callBackKey': VK_3},
-        {'imgName': 'im/limbo/fooler3.png', 'callBackKey': VK_3},
-        {'imgName': 'im/limbo/fooler4.png', 'callBackKey': VK_3},
-    ]
+    # fileList = [
+    #     # {'imgName': 'im/Abyss/yes2.png', 'callBackKey': VK_RETURN},
+    #     #{'imgName': 'im/limbo/fooler1.png', 'callBackKey': VK_3},
+    #     #{'imgName': 'im/limbo/fooler2.png', 'callBackKey': VK_3},
+    #     #{'imgName': 'im/limbo/fooler3.png', 'callBackKey': VK_3},
+    #     #{'imgName': 'im/limbo/fooler4.png', 'callBackKey': VK_3},
+    #     {'imgName': 'im/limbo/fooler1_1.png'},
+    # ]
 
     # 메인 루프: 모니터 한 번 캡처 -> 모든 템플릿 검사 -> 대기 -> 반복
     while True:
-        changed = select_img(fileList, hwnd)
+        #print('뭐지?')
+        click_client_coords(1800, 250, hwnd)
+        time.sleep(4)
+        send_background_click(hwnd, VK_3)
+        time.sleep(1)
+
+        changed = select_img([{'imgName': 'im/limbo/fooler1_2.png'}], hwnd)
+
+        click_client_coords(200, 890, hwnd)
+        time.sleep(4)
+        send_background_click(hwnd, VK_3)
+        time.sleep(1)
+
+        changed = select_img([{'imgName': 'im/limbo/fooler1_1.png'}], hwnd)
+
+
+
+
         # 클릭이 발생하면 SKIP 플래그 관리
         # if changed:
         #     with lock:
@@ -277,15 +295,15 @@ def worker_2():
         #         SKIP_CHK = True
 
         # 루프 텀 (캡처 1회/주기)
-        time.sleep(0.6)
+        #time.sleep(0.6)
 
 
 # ==============================
 # 메인
 # ==============================
 def main():
-    t1 = threading.Thread(target=worker_1, daemon=True)
-    t1.start()
+    #t1 = threading.Thread(target=worker_1, daemon=True)
+    #t1.start()
     worker_2()  # 메인 스레드에서 실행
 
 if __name__ == "__main__":

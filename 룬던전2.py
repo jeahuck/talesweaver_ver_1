@@ -233,7 +233,7 @@ def select_img(fileList, hwnd, win_left, win_top):
 # 스레드들
 # ==============================
 def worker_1():
-    window_title_keyword = "Talesweaver Client Version 907.3 ,Release ,for Korea (DirectX9)"
+    window_title_keyword = "Talesweaver Client Version 909.2 ,Release ,for Korea (DirectX9)"
     hwnd = get_window_by_title(window_title_keyword)
     if not hwnd:
         print("❌ 해당 창을 찾을 수 없습니다.")
@@ -249,7 +249,7 @@ def worker_1():
 
 
 def worker_2():
-    window_title_keyword = "Talesweaver Client Version 907.3 ,Release ,for Korea (DirectX9)"
+    window_title_keyword = "Talesweaver Client Version 909.2 ,Release ,for Korea (DirectX9)"
     hwnd = get_window_by_title(window_title_keyword)
     if not hwnd:
         print("❌ 해당 창을 찾을 수 없습니다.")

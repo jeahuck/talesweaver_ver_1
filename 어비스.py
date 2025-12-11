@@ -141,7 +141,7 @@ def get_window_by_title(partial_title):
 # ==============================
 def click_with_shift(hwnd, x, y):
     # 실제 Shift 누르기
-    win32api.keybd_event(VK_SHIFT, 0, 0, 0)
+    #win32api.keybd_event(VK_SHIFT, 0, 0, 0)
     time.sleep(0.05)
 
     # 클릭 수행 (실제 눌린 상태 유지 중)
@@ -149,7 +149,7 @@ def click_with_shift(hwnd, x, y):
     time.sleep(0.05)
 
     # Shift 떼기
-    win32api.keybd_event(VK_SHIFT, 0, win32con.KEYEVENTF_KEYUP, 0)
+    #win32api.keybd_event(VK_SHIFT, 0, win32con.KEYEVENTF_KEYUP, 0)
 
 # ==============================
 # 핵심: 한 번 캡처하고 모든 템플릿 검사 (모니터별)
@@ -224,7 +224,7 @@ def select_img(fileList, hwnd):
 
                 # 클릭
                 print(f"Found match score={best['score']:.3f} screen=({screen_x},{screen_y}) client=({client_x},{client_y})")
-                click_with_shift(hwnd, client_x, client_y - 10)
+                click_with_shift(hwnd, client_x, client_y - 0)
                 _last_click["pos"] = pos
                 _last_click["time"] = now
 
@@ -248,7 +248,7 @@ def select_img(fileList, hwnd):
 # 스레드들
 # ==============================
 def worker_1():
-    window_title_keyword = "Talesweaver Client Version 907.2 ,Release ,for Korea (DirectX9)"
+    window_title_keyword = "Talesweaver Client Version 909.2 ,Release ,for Korea (DirectX9)"
     hwnd = get_window_by_title(window_title_keyword)
     if not hwnd:
         print("❌ 해당 창을 찾을 수 없습니다.")
@@ -264,7 +264,7 @@ def worker_1():
 
 
 def worker_2():
-    window_title_keyword = "Talesweaver Client Version 907.2 ,Release ,for Korea (DirectX9)"
+    window_title_keyword = "Talesweaver Client Version 909.2 ,Release ,for Korea (DirectX9)"
     hwnd = get_window_by_title(window_title_keyword)
     if not hwnd:
         print("❌ 해당 창을 찾을 수 없습니다.")
@@ -278,10 +278,11 @@ def worker_2():
         {'imgName': 'im/Abyss/Jellybee.png', 'callBackKey': ''},
         {'imgName': 'im/Abyss/yes.png', 'callBackKey': ''},
         {'imgName': 'im/Abyss/skeleton.png', 'callBackKey': ''},
-        # {'imgName': 'im/Abyss/up_re_game2.png', 'callBackKey': ''},
-        # {'imgName': 'im/Abyss/up_re_game.png', 'callBackKey': VK_RETURN},
+        #{'imgName': 'im/Abyss/up_re_game2.png', 'callBackKey': ''},
+        #{'imgName': 'im/Abyss/up_re_game.png', 'callBackKey': VK_RETURN},
         {'imgName': 'im/Abyss/re_game2.png', 'callBackKey': ''},
         {'imgName': 'im/Abyss/re_game.png', 'callBackKey': VK_RETURN},
+        {'imgName': 'im/Abyss/wid.png', 'callBackKey': ''},
     ]
 
     # 메인 루프: 모니터 한 번 캡처 -> 모든 템플릿 검사 -> 대기 -> 반복

@@ -1,0 +1,80 @@
+s1_chb_b1_blk25_C8_otsuFalse_invFalse_mNone	conf=14.4	text=3	out\140_s1_chb_b1_blk25_C8_otsuFalse_invFalse_mNone.png
+s1_chb_b1_blk25_C8_otsuFalse_invFalse_m('erode', 1)	conf=14.4	text=3	out\143_s1_chb_b1_blk25_C8_otsuFalse_invFalse_m('erode', 1).png
+s1_chb_b1_blk25_C8_otsuFalse_invFalse_m('dilate', 1)	conf=14.4	text=3	out\144_s1_chb_b1_blk25_C8_otsuFalse_invFalse_m('dilate', 1).png
+s1_chb_b1_blk25_C8_otsuFalse_invTrue_mNone	conf=14.4	text=3	out\145_s1_chb_b1_blk25_C8_otsuFalse_invTrue_mNone.png
+s1_chb_b1_blk25_C8_otsuFalse_invTrue_m('erode', 1)	conf=14.4	text=3	out\148_s1_chb_b1_blk25_C8_otsuFalse_invTrue_m('erode', 1).png
+s1_chb_b1_blk25_C8_otsuFalse_invTrue_m('dilate', 1)	conf=14.4	text=3	out\149_s1_chb_b1_blk25_C8_otsuFalse_invTrue_m('dilate', 1).png
+s1_chb_b5_blk11_C12_otsuFalse_invFalse_mNone	conf=10.0	text=7	out\400_s1_chb_b5_blk11_C12_otsuFalse_invFalse_mNone.png
+s1_chb_b3_blk25_C8_otsuFalse_invFalse_mNone	conf=9.6	text=7	out\320_s1_chb_b3_blk25_C8_otsuFalse_invFalse_mNone.png
+s1_chb_b3_blk25_C8_otsuFalse_invFalse_m('erode', 1)	conf=9.6	text=7	out\323_s1_chb_b3_blk25_C8_otsuFalse_invFalse_m('erode', 1).png
+s1_chb_b3_blk25_C8_otsuFalse_invFalse_m('dilate', 1)	conf=9.6	text=7	out\324_s1_chb_b3_blk25_C8_otsuFalse_invFalse_m('dilate', 1).png
+s1_chb_b1_blk21_C8_otsuFalse_invFalse_m('close', 3)	conf=8.8	text=4 .	out\82_s1_chb_b1_blk21_C8_otsuFalse_invFalse_m('close', 3).png
+s1_chb_b3_blk25_C8_otsuFalse_invTrue_m('close', 3)	conf=8.7	text=7 ,	out\327_s1_chb_b3_blk25_C8_otsuFalse_invTrue_m('close', 3).png
+s1_chb_b5_blk11_C8_otsuFalse_invFalse_m('open', 3)	conf=8.6	text=1020.	out\381_s1_chb_b5_blk11_C8_otsuFalse_invFalse_m('open', 3).png
+s1_chb_b3_blk25_C8_otsuFalse_invTrue_mNone	conf=7.7	text=7 , ,	out\325_s1_chb_b3_blk25_C8_otsuFalse_invTrue_mNone.png
+s1_chb_b3_blk25_C8_otsuFalse_invTrue_m('erode', 1)	conf=7.7	text=7 , ,	out\328_s1_chb_b3_blk25_C8_otsuFalse_invTrue_m('erode', 1).png
+s1_chb_b3_blk25_C8_otsuFalse_invTrue_m('dilate', 1)	conf=7.7	text=7 , ,	out\329_s1_chb_b3_blk25_C8_otsuFalse_invTrue_m('dilate', 1).png
+s1_chb_b5_blk11_C8_otsuFalse_invTrue_m('close', 3)	conf=7.6	text=1020.	out\387_s1_chb_b5_blk11_C8_otsuFalse_invTrue_m('close', 3).png
+s1_chb_b3_blk25_C8_otsuFalse_invFalse_m('open', 3)	conf=7.1	text=7 , ,	out\321_s1_chb_b3_blk25_C8_otsuFalse_invFalse_m('open', 3).png
+s1_chb_b3_blk11_C2_otsuTrue_invFalse_m('open', 3)	conf=5.8	text=, .	out\191_s1_chb_b3_blk11_C2_otsuTrue_invFalse_m('open', 3).png
+s1_chb_b3_blk11_C2_otsuTrue_invTrue_m('close', 3)	conf=5.8	text=, .	out\197_s1_chb_b3_blk11_C2_otsuTrue_invTrue_m('close', 3).png
+s1_chb_b3_blk11_C8_otsuTrue_invFalse_m('open', 3)	conf=5.8	text=, .	out\211_s1_chb_b3_blk11_C8_otsuTrue_invFalse_m('open', 3).png
+s1_chb_b3_blk11_C8_otsuTrue_invTrue_m('close', 3)	conf=5.8	text=, .	out\217_s1_chb_b3_blk11_C8_otsuTrue_invTrue_m('close', 3).png
+s1_chb_b3_blk11_C12_otsuTrue_invFalse_m('open', 3)	conf=5.8	text=, .	out\231_s1_chb_b3_blk11_C12_otsuTrue_invFalse_m('open', 3).png
+s1_chb_b3_blk11_C12_otsuTrue_invTrue_m('close', 3)	conf=5.8	text=, .	out\237_s1_chb_b3_blk11_C12_otsuTrue_invTrue_m('close', 3).png
+s1_chb_b3_blk21_C2_otsuTrue_invFalse_m('open', 3)	conf=5.8	text=, .	out\251_s1_chb_b3_blk21_C2_otsuTrue_invFalse_m('open', 3).png
+s1_chb_b3_blk21_C2_otsuTrue_invTrue_m('close', 3)	conf=5.8	text=, .	out\257_s1_chb_b3_blk21_C2_otsuTrue_invTrue_m('close', 3).png
+s1_chb_b3_blk21_C8_otsuTrue_invFalse_m('open', 3)	conf=5.8	text=, .	out\271_s1_chb_b3_blk21_C8_otsuTrue_invFalse_m('open', 3).png
+s1_chb_b3_blk21_C8_otsuTrue_invTrue_m('close', 3)	conf=5.8	text=, .	out\277_s1_chb_b3_blk21_C8_otsuTrue_invTrue_m('close', 3).png
+s1_chb_b3_blk21_C12_otsuTrue_invFalse_m('open', 3)	conf=5.8	text=, .	out\291_s1_chb_b3_blk21_C12_otsuTrue_invFalse_m('open', 3).png
+s1_chb_b3_blk21_C12_otsuTrue_invTrue_m('close', 3)	conf=5.8	text=, .	out\297_s1_chb_b3_blk21_C12_otsuTrue_invTrue_m('close', 3).png
+s1_chb_b3_blk25_C2_otsuTrue_invFalse_m('open', 3)	conf=5.8	text=, .	out\311_s1_chb_b3_blk25_C2_otsuTrue_invFalse_m('open', 3).png
+s1_chb_b3_blk25_C2_otsuTrue_invTrue_m('close', 3)	conf=5.8	text=, .	out\317_s1_chb_b3_blk25_C2_otsuTrue_invTrue_m('close', 3).png
+s1_chb_b3_blk25_C8_otsuTrue_invFalse_m('open', 3)	conf=5.8	text=, .	out\331_s1_chb_b3_blk25_C8_otsuTrue_invFalse_m('open', 3).png
+s1_chb_b3_blk25_C8_otsuTrue_invTrue_m('close', 3)	conf=5.8	text=, .	out\337_s1_chb_b3_blk25_C8_otsuTrue_invTrue_m('close', 3).png
+s1_chb_b3_blk25_C12_otsuTrue_invFalse_m('open', 3)	conf=5.8	text=, .	out\351_s1_chb_b3_blk25_C12_otsuTrue_invFalse_m('open', 3).png
+s1_chb_b3_blk25_C12_otsuTrue_invTrue_m('close', 3)	conf=5.8	text=, .	out\357_s1_chb_b3_blk25_C12_otsuTrue_invTrue_m('close', 3).png
+s1_chb_b1_blk21_C2_otsuFalse_invTrue_m('close', 3)	conf=5.6	text=,	out\67_s1_chb_b1_blk21_C2_otsuFalse_invTrue_m('close', 3).png
+s1_chb_b3_blk25_C12_otsuFalse_invFalse_m('open', 3)	conf=5.4	text=.	out\341_s1_chb_b3_blk25_C12_otsuFalse_invFalse_m('open', 3).png
+s1_chb_b3_blk25_C12_otsuFalse_invTrue_m('close', 3)	conf=5.4	text=.	out\347_s1_chb_b3_blk25_C12_otsuFalse_invTrue_m('close', 3).png
+s1_chb_b1_blk21_C2_otsuFalse_invFalse_m('open', 3)	conf=3.8	text=,	out\61_s1_chb_b1_blk21_C2_otsuFalse_invFalse_m('open', 3).png
+s1_chb_b3_blk11_C12_otsuFalse_invTrue_m('close', 3)	conf=3.0	text=.	out\227_s1_chb_b3_blk11_C12_otsuFalse_invTrue_m('close', 3).png
+s1_chb_b3_blk21_C12_otsuFalse_invFalse_m('open', 3)	conf=2.6	text=.	out\281_s1_chb_b3_blk21_C12_otsuFalse_invFalse_m('open', 3).png
+s1_chb_b3_blk21_C12_otsuFalse_invTrue_m('close', 3)	conf=2.6	text=.	out\287_s1_chb_b3_blk21_C12_otsuFalse_invTrue_m('close', 3).png
+s1_chb_b1_blk21_C8_otsuFalse_invTrue_m('open', 3)	conf=2.4	text=.	out\86_s1_chb_b1_blk21_C8_otsuFalse_invTrue_m('open', 3).png
+s1_chb_b3_blk11_C12_otsuFalse_invFalse_m('open', 3)	conf=1.8	text=. .	out\221_s1_chb_b3_blk11_C12_otsuFalse_invFalse_m('open', 3).png
+s1_chb_b1_blk11_C8_otsuFalse_invTrue_mNone	conf=1.6	text=.	out\25_s1_chb_b1_blk11_C8_otsuFalse_invTrue_mNone.png
+s1_chb_b1_blk11_C8_otsuFalse_invTrue_m('erode', 1)	conf=1.6	text=.	out\28_s1_chb_b1_blk11_C8_otsuFalse_invTrue_m('erode', 1).png
+s1_chb_b1_blk11_C8_otsuFalse_invTrue_m('dilate', 1)	conf=1.6	text=.	out\29_s1_chb_b1_blk11_C8_otsuFalse_invTrue_m('dilate', 1).png
+s1_chb_b5_blk11_C8_otsuFalse_invFalse_m('close', 3)	conf=1.4	text=. . . .	out\382_s1_chb_b5_blk11_C8_otsuFalse_invFalse_m('close', 3).png
+s1_chb_b5_blk11_C8_otsuFalse_invTrue_m('open', 3)	conf=1.4	text=. . . .	out\386_s1_chb_b5_blk11_C8_otsuFalse_invTrue_m('open', 3).png
+s1_chb_b5_blk11_C8_otsuFalse_invTrue_mNone	conf=0.7	text=, ,	out\385_s1_chb_b5_blk11_C8_otsuFalse_invTrue_mNone.png
+s1_chb_b5_blk11_C8_otsuFalse_invTrue_m('erode', 1)	conf=0.7	text=, ,	out\388_s1_chb_b5_blk11_C8_otsuFalse_invTrue_m('erode', 1).png
+s1_chb_b5_blk11_C8_otsuFalse_invTrue_m('dilate', 1)	conf=0.7	text=, ,	out\389_s1_chb_b5_blk11_C8_otsuFalse_invTrue_m('dilate', 1).png
+s1_chb_b3_blk25_C2_otsuFalse_invFalse_m('open', 3)	conf=-0.6	text=7	out\301_s1_chb_b3_blk25_C2_otsuFalse_invFalse_m('open', 3).png
+s1_chb_b5_blk11_C8_otsuFalse_invFalse_mNone	conf=-0.7	text=, ,	out\380_s1_chb_b5_blk11_C8_otsuFalse_invFalse_mNone.png
+s1_chb_b5_blk11_C8_otsuFalse_invFalse_m('erode', 1)	conf=-0.7	text=, ,	out\383_s1_chb_b5_blk11_C8_otsuFalse_invFalse_m('erode', 1).png
+s1_chb_b5_blk11_C8_otsuFalse_invFalse_m('dilate', 1)	conf=-0.7	text=, ,	out\384_s1_chb_b5_blk11_C8_otsuFalse_invFalse_m('dilate', 1).png
+s1_chb_b1_blk11_C8_otsuFalse_invFalse_mNone	conf=-0.8	text=.	out\20_s1_chb_b1_blk11_C8_otsuFalse_invFalse_mNone.png
+s1_chb_b1_blk11_C8_otsuFalse_invFalse_m('erode', 1)	conf=-0.8	text=.	out\23_s1_chb_b1_blk11_C8_otsuFalse_invFalse_m('erode', 1).png
+s1_chb_b1_blk11_C8_otsuFalse_invFalse_m('dilate', 1)	conf=-0.8	text=.	out\24_s1_chb_b1_blk11_C8_otsuFalse_invFalse_m('dilate', 1).png
+s1_chb_b1_blk21_C8_otsuFalse_invFalse_mNone	conf=-0.8	text=.	out\80_s1_chb_b1_blk21_C8_otsuFalse_invFalse_mNone.png
+s1_chb_b1_blk21_C8_otsuFalse_invFalse_m('erode', 1)	conf=-0.8	text=.	out\83_s1_chb_b1_blk21_C8_otsuFalse_invFalse_m('erode', 1).png
+s1_chb_b1_blk21_C8_otsuFalse_invFalse_m('dilate', 1)	conf=-0.8	text=.	out\84_s1_chb_b1_blk21_C8_otsuFalse_invFalse_m('dilate', 1).png
+s1_chb_b1_blk21_C8_otsuFalse_invTrue_mNone	conf=-0.8	text=.	out\85_s1_chb_b1_blk21_C8_otsuFalse_invTrue_mNone.png
+s1_chb_b1_blk21_C8_otsuFalse_invTrue_m('erode', 1)	conf=-0.8	text=.	out\88_s1_chb_b1_blk21_C8_otsuFalse_invTrue_m('erode', 1).png
+s1_chb_b1_blk21_C8_otsuFalse_invTrue_m('dilate', 1)	conf=-0.8	text=.	out\89_s1_chb_b1_blk21_C8_otsuFalse_invTrue_m('dilate', 1).png
+s1_chb_b3_blk11_C2_otsuTrue_invFalse_mNone	conf=-0.8	text=.	out\190_s1_chb_b3_blk11_C2_otsuTrue_invFalse_mNone.png
+s1_chb_b3_blk11_C2_otsuTrue_invFalse_m('erode', 1)	conf=-0.8	text=.	out\193_s1_chb_b3_blk11_C2_otsuTrue_invFalse_m('erode', 1).png
+s1_chb_b3_blk11_C2_otsuTrue_invFalse_m('dilate', 1)	conf=-0.8	text=.	out\194_s1_chb_b3_blk11_C2_otsuTrue_invFalse_m('dilate', 1).png
+s1_chb_b3_blk11_C2_otsuTrue_invTrue_mNone	conf=-0.8	text=.	out\195_s1_chb_b3_blk11_C2_otsuTrue_invTrue_mNone.png
+s1_chb_b3_blk11_C2_otsuTrue_invTrue_m('erode', 1)	conf=-0.8	text=.	out\198_s1_chb_b3_blk11_C2_otsuTrue_invTrue_m('erode', 1).png
+s1_chb_b3_blk11_C2_otsuTrue_invTrue_m('dilate', 1)	conf=-0.8	text=.	out\199_s1_chb_b3_blk11_C2_otsuTrue_invTrue_m('dilate', 1).png
+s1_chb_b3_blk11_C8_otsuFalse_invFalse_mNone	conf=-0.8	text=,	out\200_s1_chb_b3_blk11_C8_otsuFalse_invFalse_mNone.png
+s1_chb_b3_blk11_C8_otsuFalse_invFalse_m('erode', 1)	conf=-0.8	text=,	out\203_s1_chb_b3_blk11_C8_otsuFalse_invFalse_m('erode', 1).png
+s1_chb_b3_blk11_C8_otsuFalse_invFalse_m('dilate', 1)	conf=-0.8	text=,	out\204_s1_chb_b3_blk11_C8_otsuFalse_invFalse_m('dilate', 1).png
+s1_chb_b3_blk11_C8_otsuFalse_invTrue_mNone	conf=-0.8	text=,	out\205_s1_chb_b3_blk11_C8_otsuFalse_invTrue_mNone.png
+s1_chb_b3_blk11_C8_otsuFalse_invTrue_m('erode', 1)	conf=-0.8	text=,	out\208_s1_chb_b3_blk11_C8_otsuFalse_invTrue_m('erode', 1).png
+s1_chb_b3_blk11_C8_otsuFalse_invTrue_m('dilate', 1)	conf=-0.8	text=,	out\209_s1_chb_b3_blk11_C8_otsuFalse_invTrue_m('dilate', 1).png
+s1_chb_b3_blk11_C8_otsuTrue_invFalse_mNone	conf=-0.8	text=.	out\210_s1_chb_b3_blk11_C8_otsuTrue_invFalse_mNone.png
+s1_chb_b3_blk11_C8_otsuTrue_invFalse_m('erode', 1)	conf=-0.8	text=.	out\213_s1_chb_b3_blk11_C8_otsuTrue_invFalse_m('erode', 1).png
