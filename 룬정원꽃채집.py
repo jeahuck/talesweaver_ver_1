@@ -190,6 +190,7 @@ def select_img(fileList, hwnd, win_left, win_top):
 
     # --- 3) 결과 중 가장 높은 score 우선 처리
     results.sort(key=lambda x: x['score'], reverse=True)
+    #print(results)
     best = results[0]
 
     mon = best['mon']
@@ -216,7 +217,7 @@ def select_img(fileList, hwnd, win_left, win_top):
 
     # 클릭
     print(f"Found match score={best['score']:.3f} screen=({screen_x},{screen_y}) client=({client_x},{client_y})")
-    click_client_coords(client_x, client_y, hwnd)
+    click_client_coords(client_x - win_left, client_y - win_top, hwnd)
     _last_click["pos"] = pos
     _last_click["time"] = now
 
@@ -257,14 +258,41 @@ def worker_2():
         return
 
     fileList = [
-        {'imgName': 'im/flower/flower1.png', 'callBackKey': VK_RIGHT},
+        {'imgName': 'im/flower/flower1.png', 'callBackKey': ''},
     ]
 
 
     # 메인 루프: 모니터 한 번 캡처 -> 모든 템플릿 검사 -> 대기 -> 반복
     while True:
-        win_left, win_top, win_right, win_bottom = win32gui.GetWindowRect(hwnd)
-        changed = select_img(fileList, hwnd, win_left, win_top)
+        win_left = 0
+        win_top = 0
+        #win_left, win_top, win_right, win_bottom = win32gui.GetWindowRect(hwnd)
+        changed = select_img([{'imgName': 'im/flower/flower1.png'}], hwnd, win_left, win_top)
+        if not changed:
+            # win_left = 20
+            # win_top = -100
+            # changed = select_img([{'imgName': 'im/flower/etc_1.png', 'callBackKey': 0x70}], hwnd, win_left, win_top)
+            # time.sleep(4)
+            # win_left = -20
+            # win_top = -200
+            # changed = select_img([{'imgName': 'im/flower/etc_1.png', 'callBackKey': 0x70}], hwnd, win_left, win_top)
+            time.sleep(4)
+            win_left = -20
+            win_top = -300
+            changed = select_img([{'imgName': 'im/flower/etc_1.png', 'callBackKey': 0x70}], hwnd, win_left, win_top)
+            time.sleep(4)
+            win_left = 150
+            win_top = -300
+            changed = select_img([{'imgName': 'im/flower/etc_1.png', 'callBackKey': 0x70}], hwnd, win_left, win_top)
+            time.sleep(4)
+            win_left = 150
+            win_top = -200
+            changed = select_img([{'imgName': 'im/flower/etc_1.png', 'callBackKey': 0x70}], hwnd, win_left, win_top)
+            time.sleep(4)
+            win_left = 200
+            win_top = -100
+            changed = select_img([{'imgName': 'im/flower/etc_1.png', 'callBackKey': 0x70}], hwnd, win_left, win_top)
+            time.sleep(4)
         # 클릭이 발생하면 SKIP 플래그 관리
         # if changed:
         #     with lock:

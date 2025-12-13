@@ -271,7 +271,7 @@ def worker_2():
     # 메인 루프: 모니터 한 번 캡처 -> 모든 템플릿 검사 -> 대기 -> 반복
     while True:
         #print('뭐지?')
-        click_client_coords(1800, 250, hwnd)
+        click_client_coords(1800, 200, hwnd)
         time.sleep(4)
         send_background_click(hwnd, VK_3)
         time.sleep(1)
