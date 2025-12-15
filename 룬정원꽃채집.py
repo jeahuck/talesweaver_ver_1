@@ -268,31 +268,32 @@ def worker_2():
         win_top = 0
         #win_left, win_top, win_right, win_bottom = win32gui.GetWindowRect(hwnd)
         changed = select_img([{'imgName': 'im/flower/flower1.png'}], hwnd, win_left, win_top)
-        if not changed:
-            # win_left = 20
+        # if not changed:
+
+            # time.sleep(4)
+            # win_left = 200
+            # win_top = -300
+            # changed = select_img([{'imgName': 'im/flower/etc_1.png', 'callBackKey': 0x70}], hwnd, win_left, win_top)
+            # time.sleep(4)
+            # win_left = 200
+            # win_top = -200
+            # changed = select_img([{'imgName': 'im/flower/etc_1.png', 'callBackKey': 0x70}], hwnd, win_left, win_top)
+            # time.sleep(4)
+            # win_left = 200
             # win_top = -100
             # changed = select_img([{'imgName': 'im/flower/etc_1.png', 'callBackKey': 0x70}], hwnd, win_left, win_top)
             # time.sleep(4)
-            # win_left = -20
+            # win_left = 350
+            # win_top = -300
+            # changed = select_img([{'imgName': 'im/flower/etc_1.png', 'callBackKey': 0x70}], hwnd, win_left, win_top)
+            # time.sleep(4)
+            # win_left = 300
             # win_top = -200
             # changed = select_img([{'imgName': 'im/flower/etc_1.png', 'callBackKey': 0x70}], hwnd, win_left, win_top)
-            time.sleep(4)
-            win_left = -20
-            win_top = -300
-            changed = select_img([{'imgName': 'im/flower/etc_1.png', 'callBackKey': 0x70}], hwnd, win_left, win_top)
-            time.sleep(4)
-            win_left = 150
-            win_top = -300
-            changed = select_img([{'imgName': 'im/flower/etc_1.png', 'callBackKey': 0x70}], hwnd, win_left, win_top)
-            time.sleep(4)
-            win_left = 150
-            win_top = -200
-            changed = select_img([{'imgName': 'im/flower/etc_1.png', 'callBackKey': 0x70}], hwnd, win_left, win_top)
-            time.sleep(4)
-            win_left = 200
-            win_top = -100
-            changed = select_img([{'imgName': 'im/flower/etc_1.png', 'callBackKey': 0x70}], hwnd, win_left, win_top)
-            time.sleep(4)
+            # time.sleep(4)
+            # win_left = 300
+            # win_top = -50
+            # changed = select_img([{'imgName': 'im/flower/etc_1.png', 'callBackKey': 0x70}], hwnd, win_left, win_top)
         # 클릭이 발생하면 SKIP 플래그 관리
         # if changed:
         #     with lock:

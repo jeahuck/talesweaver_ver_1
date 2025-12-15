@@ -2,23 +2,23 @@ import tkinter as tk
 import subprocess
 import sys
 import os
+import atexit
+import signal
 
 PYTHON = sys.executable
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# 실행중인 프로세스 관리
-process_map = {}  # {script: Popen}
+process_map = {}
 
 def start_script(script):
     if script in process_map:
-        return  # 이미 실행중
+        return
 
     p = subprocess.Popen(
         [PYTHON, os.path.join(BASE_DIR, script)],
-        creationflags=subprocess.CREATE_NO_WINDOW  # 콘솔 숨김 (윈도우)
+        creationflags=subprocess.CREATE_NO_WINDOW
     )
     process_map[script] = p
-    print(f"{script} 시작")
 
 def stop_script(script):
     p = process_map.get(script)
@@ -28,7 +28,6 @@ def stop_script(script):
     if p.poll() is None:
         p.terminate()
     process_map.pop(script, None)
-    print(f"{script} 종료")
 
 def toggle(var, script):
     if var.get():
@@ -36,32 +35,55 @@ def toggle(var, script):
     else:
         stop_script(script)
 
+# 🔥 모든 종료 경로에서 호출
+def kill_all_processes():
+    for p in process_map.values():
+        if p.poll() is None:
+            try:
+                p.terminate()
+                p.wait(timeout=2)
+            except:
+                p.kill()
+    process_map.clear()
+
+def on_close():
+    kill_all_processes()
+    root.destroy()
+
+def handle_signal(sig, frame):
+    kill_all_processes()
+    sys.exit(0)
+
+atexit.register(kill_all_processes)
+signal.signal(signal.SIGINT, handle_signal)
+signal.signal(signal.SIGTERM, handle_signal)
+
 # =============================
 # GUI
 # =============================
 root = tk.Tk()
 root.title("체크 기반 PY 실행기")
-root.geometry("320x200")
+root.geometry("300x300")
+root.resizable(False, False)
+root.attributes("-topmost", True)
 
 jobs = [
     ("룬정원꽃 채집", "룬정원꽃채집.py"),
     ("어비스", "어비스.py"),
     ("림보", "림보.py"),
     ("대장간 미완성", "대장간.py"),
-    ("룬던전", "룬던전2.py"), #완료ㅕ된
+    ("룬던전", "룬던전2.py"),
+    ("테시스코어", "테시스코어2.py"),
 ]
 
-vars = {}
-
 for text, script in jobs:
-    v = tk.BooleanVar()
-    vars[script] = v
-
+    var = tk.BooleanVar()
     tk.Checkbutton(
         root,
         text=text,
-        variable=v,
-        command=lambda v=v, s=script: toggle(v, s)
-    ).pack(anchor="w", padx=20, pady=5)
+        variable=var,
+        command=lambda v=var, s=script: toggle(v, s)
+    ).pack(anchor="w", padx=20, pady=6)
 
+root.protocol("WM_DELETE_WINDOW", on_close)
 root.mainloop()
