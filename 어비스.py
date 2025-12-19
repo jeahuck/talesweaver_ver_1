@@ -9,6 +9,7 @@ import threading
 from concurrent.futures import ThreadPoolExecutor
 import ctypes
 import win32print
+from common.config import WINDOW_TITLE_KEYWORD
 
 # DPI 인식 설정
 ctypes.windll.user32.SetProcessDPIAware()
@@ -248,7 +249,7 @@ def select_img(fileList, hwnd):
 # 스레드들
 # ==============================
 def worker_1():
-    window_title_keyword = "Talesweaver Client Version 909.2 ,Release ,for Korea (DirectX9)"
+    window_title_keyword = WINDOW_TITLE_KEYWORD
     hwnd = get_window_by_title(window_title_keyword)
     if not hwnd:
         print("❌ 해당 창을 찾을 수 없습니다.")
@@ -264,7 +265,7 @@ def worker_1():
 
 
 def worker_2():
-    window_title_keyword = "Talesweaver Client Version 909.2 ,Release ,for Korea (DirectX9)"
+    window_title_keyword = WINDOW_TITLE_KEYWORD
     hwnd = get_window_by_title(window_title_keyword)
     if not hwnd:
         print("❌ 해당 창을 찾을 수 없습니다.")

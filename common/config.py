@@ -1,0 +1,1 @@
+WINDOW_TITLE_KEYWORD = "Talesweaver Client Version 909.2 ,Release ,for Korea (DirectX9)"
