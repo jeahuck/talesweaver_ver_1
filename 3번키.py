@@ -19,7 +19,11 @@ ctypes.windll.user32.SetProcessDPIAware()
 # ==============================
 THRESHOLD = 0.95   # 템플릿 매칭 유사도 기준
 VK_3 = 0x33         # '3' 키
+VK_2 = 0x32         # '2' 키
 VK_RETURN = 0x0D    # 엔터 키
+VK_MENU = 0x12     #Alt
+VK_LBUTTONDOWN = 0x01 #마우스 오른쪽
+VK_LEFT = 0x25 # 왼쪽키
 SKIP_CHK = False
 lock = threading.Lock()
 
@@ -223,13 +227,6 @@ def select_img(fileList, hwnd, win_left, win_top):
     # 콜백키가 있으면 전송
     if callBackKey:
         time.sleep(0.5)
-        send_background_click(hwnd, 0x59) #'Y'
-        send_background_click(hwnd, callBackKey)
-        time.sleep(0.8)
-        send_background_click(hwnd, callBackKey)
-        time.sleep(0.8)
-        send_background_click(hwnd, callBackKey)
-        time.sleep(0.8)
         send_background_click(hwnd, callBackKey)
 
     # 클릭 후 짧은 여유
@@ -263,27 +260,47 @@ def worker_2():
         print("❌ 해당 창을 찾을 수 없습니다.")
         return
 
-    fileList = [
-        {'imgName': 'im/etc/mon1.png', 'callBackKey': VK_3},
-        {'imgName': 'im/etc/mon2.png', 'callBackKey': VK_3},
-        {'imgName': 'im/etc/noChk.png'},
-        # {'imgName': 'im/etc/mon1.png', 'callBackKey': VK_3},
-        # {'imgName': 'im/etc/mon1.png', 'callBackKey': VK_3},
-    ]
-
-
-    # 메인 루프: 모니터 한 번 캡처 -> 모든 템플릿 검사 -> 대기 -> 반복
     while True:
-        win_left, win_top, win_right, win_bottom = win32gui.GetWindowRect(hwnd)
-        changed = select_img(fileList, hwnd, win_left, win_top)
-        # 클릭이 발생하면 SKIP 플래그 관리
-        if changed:
-            with lock:
-                global SKIP_CHK
-                SKIP_CHK = True
+        # send_background_click(hwnd, VK_3)
+        # time.sleep(0.5)
+        # send_background_click(hwnd, VK_3)
+        # time.sleep(0.5)
+        send_background_click(hwnd, VK_3)
+        time.sleep(0.5)
 
-        # 루프 텀 (캡처 1회/주기)
-        time.sleep(0.6)
+        # win32api.keybd_event(win32con.VK_MENU, 0, 0, 0)
+        # time.sleep(0.01)
+        #
+        # # LEFT CLICK
+        # win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0)
+        # win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0)
+        #
+        # time.sleep(0.01)
+        #
+        # # ALT UP
+        # win32api.keybd_event(win32con.VK_MENU, 0, win32con.KEYEVENTF_KEYUP, 0)
+
+    # fileList = [
+    #     {'imgName': 'im/core/skii1.png', 'callBackKey': VK_3},
+    #     {'imgName': 'im/core/skii2.png', 'callBackKey': VK_3},
+    #     {'imgName': 'im/core/skii3.png', 'callBackKey': VK_3},
+    #     {'imgName': 'im/core/skii4.png', 'callBackKey': VK_3},
+    #     {'imgName': 'im/core/skii5.png', 'callBackKey': VK_3},
+    # ]
+    #
+    #
+    # # 메인 루프: 모니터 한 번 캡처 -> 모든 템플릿 검사 -> 대기 -> 반복
+    # while True:
+    #     win_left, win_top, win_right, win_bottom = win32gui.GetWindowRect(hwnd)
+    #     changed = select_img(fileList, hwnd, win_left, win_top)
+    #     # 클릭이 발생하면 SKIP 플래그 관리
+    #     if changed:
+    #         with lock:
+    #             global SKIP_CHK
+    #             SKIP_CHK = True
+    #
+    #     # 루프 텀 (캡처 1회/주기)
+    #     time.sleep(0.6)
 
 
 # ==============================
