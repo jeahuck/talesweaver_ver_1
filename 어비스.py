@@ -23,6 +23,8 @@ VK_RETURN = 0x0D    # 엔터 키
 VK_SHIFT = 0x10    # 쉬프트 키
 SKIP_CHK = False
 lock = threading.Lock()
+VK_F4 = 0x73
+VK_F5 = 0x74
 
 # 마지막 클릭 기록 (중복 클릭 방지)
 _last_click = {"pos": None, "time": 0.0}
@@ -294,9 +296,13 @@ def worker_2():
             with lock:
                 global SKIP_CHK
                 SKIP_CHK = True
+                send_background_click(hwnd, VK_F4)
+                time.sleep(0.1)
+                send_background_click(hwnd, VK_F5)
+                time.sleep(0.1)
 
         # 루프 텀 (캡처 1회/주기)
-        time.sleep(0.6)
+        time.sleep(0.4)
 
 
 # ==============================
