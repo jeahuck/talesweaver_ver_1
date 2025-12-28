@@ -225,11 +225,19 @@ def select_img(fileList, hwnd, win_left, win_top):
         time.sleep(0.5)
         send_background_click(hwnd, 0x59) #'Y'
         send_background_click(hwnd, callBackKey)
-        time.sleep(0.8)
+        time.sleep(0.4)
         send_background_click(hwnd, callBackKey)
-        time.sleep(0.8)
+        time.sleep(0.4)
         send_background_click(hwnd, callBackKey)
-        time.sleep(0.8)
+        time.sleep(0.4)
+        send_background_click(hwnd, callBackKey)
+        time.sleep(0.4)
+        send_background_click(hwnd, callBackKey)
+        time.sleep(0.4)
+        send_background_click(hwnd, callBackKey)
+        time.sleep(0.4)
+        send_background_click(hwnd, callBackKey)
+        time.sleep(0.4)
         send_background_click(hwnd, callBackKey)
 
     # 클릭 후 짧은 여유
