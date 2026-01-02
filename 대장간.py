@@ -10,6 +10,7 @@ from concurrent.futures import ThreadPoolExecutor
 import ctypes
 import win32print
 from common.config import WINDOW_TITLE_KEYWORD
+import json
 
 # DPI 인식 설정
 ctypes.windll.user32.SetProcessDPIAware()
@@ -20,6 +21,7 @@ ctypes.windll.user32.SetProcessDPIAware()
 THRESHOLD = 0.95   # 템플릿 매칭 유사도 기준
 VK_3 = 0x33         # '3' 키
 VK_2 = 0x32         # '2' 키
+VK_V = 0x56         # v
 VK_RETURN = 0x0D    # 엔터 키
 VK_MENU = 0x12     #Alt
 VK_LBUTTONDOWN = 0x01 #마우스 오른쪽
@@ -124,6 +126,8 @@ def send_background_click(hwnd, vk_key):
     win32api.PostMessage(hwnd, win32con.WM_KEYDOWN, vk_key, 0)
     time.sleep(0.02)
     win32api.PostMessage(hwnd, win32con.WM_KEYUP, vk_key, 0)
+
+
 
 
 # ==============================
@@ -253,6 +257,9 @@ def worker_1():
             time.sleep(0.5)
 
 
+LOG_FILE = "리체_대장간_이속99.json"
+SPEED = 1
+
 def worker_2():
     window_title_keyword = WINDOW_TITLE_KEYWORD
     hwnd = get_window_by_title(window_title_keyword)
@@ -260,48 +267,39 @@ def worker_2():
         print("❌ 해당 창을 찾을 수 없습니다.")
         return
 
+    with open(LOG_FILE, "r", encoding="utf-8") as f:
+        events = json.load(f)
+
     while True:
-        # send_background_click(hwnd, VK_3)
-        # time.sleep(0.5)
-        # send_background_click(hwnd, VK_3)
-        # time.sleep(0.5)
-        send_background_click(hwnd, VK_2)
-        time.sleep(0.5)
+        last_t = 0
+        for e in events:
+            delay = (e["t"] - last_t) * SPEED
+            if delay > 0:
+                time.sleep(delay)
+            last_t = e["t"]
+            t = e["type"]
 
-        # win32api.keybd_event(win32con.VK_MENU, 0, 0, 0)
-        # time.sleep(0.01)
-        #
-        # # LEFT CLICK
-        # win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0)
-        # win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0)
-        #
-        # time.sleep(0.01)
-        #
-        # # ALT UP
-        # win32api.keybd_event(win32con.VK_MENU, 0, win32con.KEYEVENTF_KEYUP, 0)
-        time.sleep(0.7)
+            paramKey = ""
+            key = e.get("key")
+            if key is None: key = ""
 
-    # fileList = [
-    #     {'imgName': 'im/core/skii1.png', 'callBackKey': VK_3},
-    #     {'imgName': 'im/core/skii2.png', 'callBackKey': VK_3},
-    #     {'imgName': 'im/core/skii3.png', 'callBackKey': VK_3},
-    #     {'imgName': 'im/core/skii4.png', 'callBackKey': VK_3},
-    #     {'imgName': 'im/core/skii5.png', 'callBackKey': VK_3},
-    # ]
-    #
-    #
-    # # 메인 루프: 모니터 한 번 캡처 -> 모든 템플릿 검사 -> 대기 -> 반복
-    # while True:
-    #     win_left, win_top, win_right, win_bottom = win32gui.GetWindowRect(hwnd)
-    #     changed = select_img(fileList, hwnd, win_left, win_top)
-    #     # 클릭이 발생하면 SKIP 플래그 관리
-    #     if changed:
-    #         with lock:
-    #             global SKIP_CHK
-    #             SKIP_CHK = True
-    #
-    #     # 루프 텀 (캡처 1회/주기)
-    #     time.sleep(0.6)
+            if key == "'v'" : paramKey = VK_V
+            if key == "'3'" : paramKey = VK_3
+            if t == "mouse_snap":
+                # 스케일 보정된 윈도우 내부 좌표로 변환: ScreenToClient 사용 (더 정확)
+                client_point = win32gui.ScreenToClient(hwnd, (int(e["x"],), int(e["y"])))
+                client_x, client_y = client_point[0], client_point[1]
+                lparam = win32api.MAKELONG(int(client_x), int(client_y))
+
+                win32api.PostMessage(hwnd, win32con.WM_MOUSEMOVE, 0, lparam)
+                print(client_x, client_y)
+
+            elif t == "key_down":
+                win32api.PostMessage(hwnd, win32con.WM_KEYDOWN, paramKey, 0)
+
+            elif t == "key_up":
+                win32api.PostMessage(hwnd, win32con.WM_KEYUP, paramKey, 0)
+
 
 
 # ==============================

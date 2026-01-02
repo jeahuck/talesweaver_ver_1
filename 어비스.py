@@ -299,12 +299,12 @@ def worker_2():
             with lock:
                 global SKIP_CHK
                 SKIP_CHK = True
-                send_background_click(hwnd, VK_F1)
-                time.sleep(0.1)
-                send_background_click(hwnd, VK_F2)
-                time.sleep(0.1)
-                send_background_click(hwnd, VK_F3)
-                time.sleep(0.1)
+                # send_background_click(hwnd, VK_F1)
+                # time.sleep(0.1)
+                # send_background_click(hwnd, VK_F2)
+                # time.sleep(0.1)
+                # send_background_click(hwnd, VK_F3)
+                #time.sleep(0.1)
                 send_background_click(hwnd, VK_F4)
                 time.sleep(0.1)
                 send_background_click(hwnd, VK_F5)
