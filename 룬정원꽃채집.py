@@ -112,6 +112,8 @@ def match_task(task):
 # ==============================
 def click_client_coords(cx, cy, hwnd):
     lparam = win32api.MAKELONG(int(cx), int(cy))
+    win32api.PostMessage(hwnd, win32con.WM_MOUSEMOVE, 0, lparam)
+    time.sleep(0.02)
     win32gui.PostMessage(hwnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lparam)
     time.sleep(0.02)
     win32gui.PostMessage(hwnd, win32con.WM_LBUTTONUP, 0, lparam)

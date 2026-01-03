@@ -312,8 +312,6 @@ def worker_2():
         #대장간 끝나고 나서 다시 실행
         click_client_coords(41, 900, hwnd)
         time.sleep(7)
-        click_client_coords(614, 310, hwnd)
-        time.sleep(1)
         send_background_click(hwnd, 0x71)
         time.sleep(0.1)
         send_background_click(hwnd, 0x72)
@@ -322,6 +320,8 @@ def worker_2():
         time.sleep(0.1)
         send_background_click(hwnd, 0x74)
         time.sleep(0.1)
+        click_client_coords(614, 310, hwnd)
+        time.sleep(1)
         click_client_coords(996, 593, hwnd)
         time.sleep(8)
 
