@@ -288,13 +288,20 @@ def worker_2():
             if key == "'v'" : paramKey = VK_V
             if key == "'3'" : paramKey = VK_3
             if t == "mouse_snap":
+                clinet_x_my = 0
+                clinet_y_my = 0
+
                 # 스케일 보정된 윈도우 내부 좌표로 변환: ScreenToClient 사용 (더 정확)
                 client_point = win32gui.ScreenToClient(hwnd, (int(e["x"],), int(e["y"])))
-                client_x, client_y = client_point[0], client_point[1]
+
+                if client_point[0] == int(e["x"]): clinet_x_my = 320
+                if client_point[1] == int(e["y"]): clinet_y_my = 167
+
+                client_x, client_y = client_point[0] - clinet_x_my, client_point[1] - clinet_y_my
                 lparam = win32api.MAKELONG(int(client_x), int(client_y))
 
                 win32api.PostMessage(hwnd, win32con.WM_MOUSEMOVE, 0, lparam)
-                print(client_x, client_y)
+                #print(client_x, client_y)
 
             elif t == "key_down":
                 win32api.PostMessage(hwnd, win32con.WM_KEYDOWN, paramKey, 0)
