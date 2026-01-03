@@ -2,6 +2,7 @@ import win32gui
 import win32con
 import win32api
 import time
+from common.config import WINDOW_TITLE_KEYWORD
 
 def get_window_by_title(partial_title):
     """부분 창 제목으로 창 핸들 찾기"""
@@ -23,7 +24,7 @@ def get_mouse_position():
     return win32api.GetCursorPos()
 
 def main():
-    window_title = "마비노기 모바일"  # 원하는 창 이름 일부
+    window_title = WINDOW_TITLE_KEYWORD  # 원하는 창 이름 일부
     hwnd = get_window_by_title(window_title)
 
     if not hwnd:

@@ -117,8 +117,10 @@ def match_task(task):
 # ==============================
 def click_client_coords(cx, cy, hwnd):
     lparam = win32api.MAKELONG(int(cx), int(cy))
-    win32gui.PostMessage(hwnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lparam)
+    win32api.PostMessage(hwnd, win32con.WM_MOUSEMOVE, 0, lparam)
     time.sleep(0.02)
+    win32gui.PostMessage(hwnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lparam)
+    time.sleep(0.02)  # 최소 50~100ms 권장
     win32gui.PostMessage(hwnd, win32con.WM_LBUTTONUP, 0, lparam)
 
 
@@ -299,6 +301,18 @@ def worker_2():
 
             elif t == "key_up":
                 win32api.PostMessage(hwnd, win32con.WM_KEYUP, paramKey, 0)
+
+        #대장간 끝나고 나서 다시 실행
+        send_background_click(hwnd, 0x73)
+        time.sleep(0.1)
+        send_background_click(hwnd, 0x74)
+        time.sleep(0.1)
+        click_client_coords(41, 1003,hwnd)
+        time.sleep(7)
+        click_client_coords(613, 379,hwnd)
+        time.sleep(1)
+        click_client_coords(1005, 645,hwnd)
+        time.sleep(8)
 
 
 
