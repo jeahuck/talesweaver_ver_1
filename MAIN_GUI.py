@@ -59,7 +59,7 @@ signal.signal(signal.SIGINT, handle_signal)
 signal.signal(signal.SIGTERM, handle_signal)
 
 # =============================
-# GUI33
+# GUI
 # =============================
 root = tk.Tk()
 root.title("체크 기반 PY 실행기")
