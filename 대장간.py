@@ -34,11 +34,12 @@ _last_click = {"pos": None, "time": 0.0}
 CLICK_COOLDOWN = 0.5  # 초
 
 
-VK_F1 = 0x71
-VK_F2 = 0x72
-VK_F3 = 0x73
-VK_F4 = 0x74
-VK_F5 = 0x75
+VK_F1 = 0x70
+VK_F2 = 0x71
+VK_F3 = 0x72
+VK_F4 = 0x73
+VK_F5 = 0x74
+VK_F6 = 0x75
 # ==============================
 # 유틸: DPI / 모니터
 # ==============================
