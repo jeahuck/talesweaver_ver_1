@@ -328,6 +328,8 @@ def worker_2():
         time.sleep(0.1)
         send_background_click(hwnd, VK_F5)
         time.sleep(0.1)
+        send_background_click(hwnd, VK_F6)
+        time.sleep(0.1)
         click_client_coords(614, 310, hwnd)
         time.sleep(1)
         click_client_coords(996, 593, hwnd)
