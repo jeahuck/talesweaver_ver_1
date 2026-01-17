@@ -63,7 +63,7 @@ signal.signal(signal.SIGTERM, handle_signal)
 # =============================
 root = tk.Tk()
 root.title("체크 기반 PY 실행기")
-root.geometry("300x300")
+root.geometry("300x400")
 root.resizable(False, False)
 root.attributes("-topmost", True)
 
@@ -76,6 +76,7 @@ jobs = [
     ("테시스코어", "테시스코어2.py"),
     ("필멸의땅", "필멸의땅.py"),
     ("3번키", "3번키.py"),
+    ("F3난사", "F3난사.py"),
 ]
 
 for text, script in jobs:
