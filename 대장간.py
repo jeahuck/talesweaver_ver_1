@@ -257,12 +257,26 @@ def worker_1():
         return
 
     while True:
-        global SKIP_CHK
-        if SKIP_CHK:
-            send_background_click(hwnd, VK_3)
-            time.sleep(0.2)
-        else:
-            time.sleep(0.5)
+        # global SKIP_CHK
+        # if SKIP_CHK:
+        #     send_background_click(hwnd, VK_3)
+        #     time.sleep(0.2)
+        # else:
+        #     time.sleep(0.5)
+        send_background_click(hwnd, VK_F1)
+        time.sleep(0.1)
+        send_background_click(hwnd, VK_F2)
+        time.sleep(0.1)
+        send_background_click(hwnd, VK_F3)
+        time.sleep(0.1)
+        send_background_click(hwnd, VK_F4)
+        time.sleep(0.1)
+        send_background_click(hwnd, VK_F5)
+        time.sleep(0.1)
+        send_background_click(hwnd, VK_F6)
+        time.sleep(0.1)
+
+        time.sleep(5)
 
 
 LOG_FILE = "리체_대장간_이속99.json"
@@ -317,19 +331,7 @@ def worker_2():
 
         #대장간 끝나고 나서 다시 실행
         click_client_coords(41, 900, hwnd)
-        time.sleep(7)
-        send_background_click(hwnd, VK_F1)
-        time.sleep(0.1)
-        send_background_click(hwnd, VK_F2)
-        time.sleep(0.1)
-        send_background_click(hwnd, VK_F3)
-        time.sleep(0.1)
-        send_background_click(hwnd, VK_F4)
-        time.sleep(0.1)
-        send_background_click(hwnd, VK_F5)
-        time.sleep(0.1)
-        send_background_click(hwnd, VK_F6)
-        time.sleep(0.1)
+        time.sleep(9)
         click_client_coords(614, 310, hwnd)
         time.sleep(1)
         click_client_coords(996, 593, hwnd)
@@ -341,8 +343,8 @@ def worker_2():
 # 메인
 # ==============================
 def main():
-    #t1 = threading.Thread(target=worker_1, daemon=True)
-    #t1.start()
+    t1 = threading.Thread(target=worker_1, daemon=True)
+    t1.start()
     worker_2()  # 메인 스레드에서 실행
 
 if __name__ == "__main__":
