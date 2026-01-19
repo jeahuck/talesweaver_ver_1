@@ -9,7 +9,7 @@ import os
 LOG_FILE = "events.json"
 MAX_HISTORY = 10  # events1 ~ events10 까지 유지
 
-# =========================
+# =========================g
 # 파일 적재(로테이션)=
 # =========================
 def rotate_event_files(base="events.json", max_files=10):
