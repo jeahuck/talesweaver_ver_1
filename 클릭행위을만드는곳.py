@@ -2,6 +2,7 @@ from pynput import keyboard, mouse
 import json
 import time
 import os
+import threading
 
 # =========================
 # 설정
@@ -9,8 +10,8 @@ import os
 LOG_FILE = "events.json"
 MAX_HISTORY = 10  # events1 ~ events10 까지 유지
 
-# =========================g
-# 파일 적재(로테이션)=
+# =========================
+# 파일 로테이션
 # =========================
 def rotate_event_files(base="events.json", max_files=10):
     for i in range(max_files, 0, -1):
@@ -19,7 +20,6 @@ def rotate_event_files(base="events.json", max_files=10):
         if os.path.exists(src):
             os.replace(src, dst)
 
-# 🔥 녹화 시작 전 파일 적재
 rotate_event_files(LOG_FILE, MAX_HISTORY)
 
 # =========================
@@ -63,7 +63,7 @@ def on_press(key):
     if not recording:
         return
 
-    # 🔥 v 키 → 좌표 스냅샷 + 키 기록
+    # 🔥 v 키 → 좌표 스냅샷
     if hasattr(key, "char") and key.char == "v":
         x, y = ms.position
         t = now()
@@ -84,7 +84,6 @@ def on_press(key):
         print(f"📍 v 눌림 → 좌표 저장 ({x}, {y})")
         return
 
-    # 일반 키 기록
     events.append({
         "t": now(),
         "type": "key_down",
@@ -102,12 +101,43 @@ def on_release(key):
     })
 
 # =========================
+# 마우스 클릭 이벤트 🔥 추가
+# =========================
+def on_click(x, y, button, pressed):
+    if not recording:
+        return
+
+    events.append({
+        "t": now(),
+        "type": "mouse_click",
+        "button": str(button),
+        "pressed": pressed,
+        "x": x,
+        "y": y
+    })
+
+    state = "DOWN" if pressed else "UP"
+    print(f"🖱 {button} {state} ({x}, {y})")
+
+# =========================
 # 실행
 # =========================
 print("🟡 대기중 : '=' → 녹화 시작 / v → 좌표 저장 / ESC 종료")
 
-with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
-    listener.join()
+keyboard_listener = keyboard.Listener(
+    on_press=on_press,
+    on_release=on_release
+)
+
+mouse_listener = mouse.Listener(
+    on_click=on_click
+)
+
+keyboard_listener.start()
+mouse_listener.start()
+
+keyboard_listener.join()
+mouse_listener.stop()
 
 # =========================
 # 저장
