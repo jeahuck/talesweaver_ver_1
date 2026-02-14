@@ -117,8 +117,8 @@ NUMPAD_SCAN = {
     73: jobs[8][1],  # numpad 9
 }
 
-for scan_code, script in NUMPAD_SCAN.items():
-    keyboard.add_hotkey(scan_code, lambda s=script: hotkey_toggle(s))
+# for scan_code, script in NUMPAD_SCAN.items():
+#     keyboard.add_hotkey(scan_code, lambda s=script: hotkey_toggle(s))
 
 print("NumPad 전용 전역 핫키 활성화 완료")
 
