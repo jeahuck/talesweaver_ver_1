@@ -267,7 +267,7 @@ def worker_2():
         # send_background_click(hwnd, VK_3)
         # time.sleep(0.5)
         send_background_click(hwnd, VK_F3)
-        time.sleep(0.5)
+        time.sleep(0.1)
 
         # win32api.keybd_event(win32con.VK_MENU, 0, 0, 0)
         # time.sleep(0.01)
