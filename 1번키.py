@@ -19,6 +19,7 @@ ctypes.windll.user32.SetProcessDPIAware()
 # ==============================
 THRESHOLD = 0.95   # 템플릿 매칭 유사도 기준
 VK_3 = 0x33         # '3' 키
+VK_1 = 0x31         # '1' 키
 VK_2 = 0x32         # '2' 키
 VK_RETURN = 0x0D    # 엔터 키
 VK_MENU = 0x12     #Alt
@@ -265,8 +266,8 @@ def worker_2():
         # time.sleep(0.5)
         # send_background_click(hwnd, VK_3)
         # time.sleep(0.5)
-        send_background_click(hwnd, VK_3)
-        time.sleep(0.1)
+        send_background_click(hwnd, VK_1)
+        #time.sleep(0.2)
 
         # win32api.keybd_event(win32con.VK_MENU, 0, 0, 0)
         # time.sleep(0.01)
