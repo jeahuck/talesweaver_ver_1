@@ -22,6 +22,8 @@ THRESHOLD = 0.95   # 템플릿 매칭 유사도 기준
 VK_3 = 0x33         # '3' 키
 VK_2 = 0x32         # '2' 키
 VK_V = 0x56         # v
+VK_Q = 0X51         # Q
+VK_X = 0X58         # X
 VK_RETURN = 0x0D    # 엔터 키
 VK_MENU = 0x12     #Alt
 VK_LBUTTONDOWN = 0x01 #마우스 오른쪽
@@ -263,6 +265,10 @@ def worker_1():
         #     time.sleep(0.2)
         # else:
         #     time.sleep(0.5)
+        send_background_click(hwnd, VK_Q)
+        time.sleep(0.1)
+        send_background_click(hwnd, VK_X)
+        time.sleep(0.1)
         send_background_click(hwnd, VK_F1)
         time.sleep(0.1)
         send_background_click(hwnd, VK_F2)
