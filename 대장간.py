@@ -268,7 +268,7 @@ def worker_1():
         send_background_click(hwnd, VK_Q)
         time.sleep(0.1)
         send_background_click(hwnd, VK_X)
-        time.sleep(0.1)
+        time.sleep(0.5)
         send_background_click(hwnd, VK_F1)
         time.sleep(0.1)
         send_background_click(hwnd, VK_F2)
